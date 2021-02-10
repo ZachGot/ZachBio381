@@ -1,5 +1,5 @@
 ---
-title: "Homepage"
+title: "Bio 381 Homepage"
 output:
   prettydoc::html_pretty:
     theme: cayman
@@ -10,10 +10,18 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Welcome to my Homepage!
+## Welcome to my Bio 381 Homepage!
 
-My name is Zach
+<img src="meandtitus.JPG" width="150" height="200" />
+
+
+My name is Zach, and I am obsessed with public transportation!
+
 
 ### Homework Assignments 
+
+#### Homework 1
+
+#### Homework 2
 
 
