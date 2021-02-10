@@ -12,7 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Welcome to my Homepage!
 
-My name is 
+My name is Zach
 
 ### Homework Assignments 
+
 
