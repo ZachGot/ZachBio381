@@ -1,0 +1,174 @@
+---
+title: "HomeworkThree"
+author: "Zach Gottlieb"
+date: "2/17/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Homework 3 
+
+## Question 1: Conversion to csv 
+
+Original text: 
+
+First String    Second      1.22      3.4   
+Second          More Text   1.555555  2.2220   
+Third           x           3         124   
+
+Edited Text:
+
+First String,Second,,1.22,3.4   
+Second,More Text,1.555555,2.2220   
+Third,x,3,124   
+
+```
+Find: \h{2,} # finds all consecutive spaces of two or more excluding carriage returns
+
+Replace: , # replaces two or more consectutive spaces with a ,
+```
+
+## Question 2: First name, last; placing Institution name in () 
+
+Original text:
+
+Ballif, Bryan, University of Vermont   
+Ellison, Aaron, Harvard Forest   
+Record, Sydne, Bryn Mawr   
+
+Edited Text:
+
+Bryan Ballif (University of Vermont)   
+Aaron Ellison (Harvard Forest)   
+Sydne Record (Bryn Mawr)   
+
+```
+Find: (\w*), (\w*), (.*) # captures words of any length followed by a comma (twice), then captures all the rest of the chracters in line
+
+Replace: \2 \1 \(\3\) # orders capture 2 followed by capture 1, adds parenthesis around capture 3. 
+```
+
+## Question 3: Each file gets their own line 
+
+Original Text:
+
+0001 Georgia Horseshoe.mp3 0002 Billy In The Lowground.mp3 0003 Cherokee Shuffle.mp3 0004 Walking Cane.mp3
+
+Edited Text:
+
+0001 Georgia Horseshoe. mp3      
+0002 Billy In The Lowground. mp3      
+0003 Cherokee Shuffle. mp3      
+0004 Walking Cane.mp3   
+
+```
+Find: (\.)(\w*)(\s) # Captures a period followed by a capture of a word of any length followed by a capture of a space
+
+Replace: \1 \2 \3 \n # Lists capture 1, 2, and 3, and adds a line break after the third capture- in this case the space after '.mp3'
+```
+
+## Question 4: Moving digits around 
+
+Original Text:
+
+0001 Georgia Horseshoe.mp3   
+0002 Billy In The Lowground.mp3   
+0003 Cherokee Shuffle.mp3   
+0004 Walking Cane.mp3   
+
+Edited Text:
+
+Georgia Horseshoe_0001.mp3      
+Billy In The Lowground_0002.mp3      
+Cherokee Shuffle_0003.mp3      
+Walking Cane_0004.mp3   
+
+```
+Find: (\d{4})(\s)(.*)(\.\w*) #captures four digit number, captures a single space, captures 'all the rest of the words' (the song title), captures a period followed by a string of word characters of any length
+
+Replace: \3_\1\4 # orders capture 3 followed by a _, and then ordered by captures 1 and 4 
+```
+
+## Question 5: Abbreviating genus  
+
+Original Text:
+
+Camponotus,pennsylvanicus,10.2,44   
+Camponotus,herculeanus,10.5,3   
+Myrmica,punctiventris,12.2,4   
+Lasius,neoniger,3.3,55   
+
+Edited Text:
+
+C_pennsylvanicus,44   
+C_herculeanus,3   
+M_punctiventris,4   
+L_neoniger,55    
+
+```
+Find: (\w)\w*,(\w*)(,\d*\.\d{1})(,\d*\s) # captures the first letter of the first word, captures the second word, captures the first number set, captures the last string of numbers 
+
+Replace: \1_\2\4 # replaces first word with its first letter and _ followed by second word and final digit set
+```
+
+## Question 6: Abbreviating genus and species  
+
+Original Text:
+
+Camponotus,pennsylvanicus,10.2,44   
+Camponotus,herculeanus,10.5,3   
+Myrmica,punctiventris,12.2,4   
+Lasius,neoniger,3.3,55   
+
+Edited Text:
+
+C_penn,44   
+C_herc,3   
+M_punc,4   
+L_neon,55   
+
+```
+Find: (\w)\w*,(\w{4})\w*(,\d*\.\d{1})(,\d*\s) # captures the first letter of the first word, captures the first four letters of the second word, captures the first number set, captures the last string of numbers 
+
+Replace: \1_\2\4 # replaces first word with its first letter and _ followed by first four letters of second word and final digit set
+```
+
+## Question 7: Fusion with numbers   
+
+Original Text:
+
+Camponotus,pennsylvanicus,10.2,44   
+Camponotus,herculeanus,10.5,3   
+Myrmica,punctiventris,12.2,4   
+Lasius,neoniger,3.3,55   
+
+Edited Text:
+
+Campen, 44 ,10.2   
+Camher, 3 ,10.5   
+Myrpun, 4 ,12.2   
+Lasneo, 55 ,3.3      
+
+```
+Find: (\w{3})\w*,(\w{3})\w*(,\d*\.\d{1}),(\d*.*) # captures the first three letters of the first word, captures the first three letters of the second word, captures the first number set, captures the last string of numbers 
+
+Replace: \1\2, \4 \3 # replaces first word with the first three letters of the genus and species names followed by a comma, and then followed by the number sets in reverse order
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
